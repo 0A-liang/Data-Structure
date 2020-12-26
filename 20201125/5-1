@@ -28,7 +28,7 @@ public:
 		if (first == last)
 		{
 			first->data = 0;
-			return first->data;
+			return 0;
 		}
 		first = first->link;
 		return first->data;
@@ -36,13 +36,24 @@ public:
 	void InsertLast(int x)
 	{
 		ListNode* newNode = new ListNode(x);
+		if (last == 0)
+		{
+			first = newNode;
+			last = newNode;
+			return;
+		}
 		last->link = newNode;
 		last = newNode;
 	}
 	int DeleteLast()
 	{
 		ListNode* current = first;
-		while (current->link != last)
+		if (current== last)
+		{
+			last->data = 0;
+			return 0;
+		}
+		while (current->link!= last)
 		{
 			current = current->link;
 		}
@@ -58,6 +69,7 @@ public:
 				cout << current->data << " ";
 			current = current->link;
 		}
+		cout << endl;
 	}
 };
 int main(int argc, char *argv[])
